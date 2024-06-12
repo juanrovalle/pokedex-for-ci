@@ -3,16 +3,17 @@ on:
   push:
     branches: '-main'
 jobs:
-  deploy:
-    runs-on: ubuntu-20.04
+  lint:
+    runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v2
         with:
-          node-version: 14
-      - name: install dependencies
-        run: npm install
-      - name: lint
+          cache: 'npm'
+          node-version: '14'
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
         run: npm run eslint
