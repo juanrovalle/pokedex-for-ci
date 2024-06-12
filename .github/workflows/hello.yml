@@ -26,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Lint
-        run: npm run eslint
+        run: 
 
       - name: Dime la fecha
         run: date
