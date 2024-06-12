@@ -1,9 +1,7 @@
 name: Deployment Pipeline
-
-on:
+'on':
   push:
-    branches: -main
-
+    branches: '-main'
 jobs:
   deploy:
     runs-on: ubuntu-20.04
