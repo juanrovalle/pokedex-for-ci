@@ -1,4 +1,4 @@
-name: Say hello
+name: CI-CD Actions
 on:
   push:
     branches:
@@ -27,7 +27,7 @@ jobs:
         run: npm install
       - name: Lint
         run: npm run eslint
-        
+
       - name: Dime la fecha
         run: date
       - name: List Directory
