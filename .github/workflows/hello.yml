@@ -7,14 +7,14 @@ jobs:
   hello_world:
     runs-on: ubuntu-20.04
     steps:
-      - name: Echo the message
-        run: |
-          echo "Hola Juan"
+      # # - name: Echo the message
+      # #   run: |
+      # #     echo "Hola Juan"
 
 
-      - name: Dime la fecha
-        run: date
-      - run: ls -l
+      # - name: Dime la fecha
+      #   run: date
+      # - run: ls -l
             
       - uses: actions/checkout@v2
         with:
@@ -24,11 +24,15 @@ jobs:
         with:
           node-version: "14"
       - name: Install dependencies
-        run: npm install
+        run: npm install --no-audit --no-fund --no-optional
       - name: Lint
         run: npm run eslint
+      - name: build
+        run: npm run build
+      - name: test
+        run: npm test
 
-      - name: Dime la fecha
-        run: date
-      - name: List Directory
-        run: ls -l
+      # - name: Dime la fecha
+      #   run: date
+      # - name: List Directory
+      #   run: ls -l
