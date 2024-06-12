@@ -4,18 +4,17 @@ on:
     branches:
       - main
 jobs:
-  hello_world:
+  CI-CD:
     runs-on: ubuntu-20.04
     steps:
       # # - name: Echo the message
       # #   run: |
       # #     echo "Hola Juan"
 
-
       # - name: Dime la fecha
       #   run: date
       # - run: ls -l
-            
+
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -31,6 +30,12 @@ jobs:
         run: npm run build
       - name: test
         run: npm test
+      - name: E2E Test
+        uses: cypress-io/github-action@v6
+        with:
+          command: npm run test:e2e
+          start: npm run start-test
+          wait-on: http://localhost:5000
 
       # - name: Dime la fecha
       #   run: date
