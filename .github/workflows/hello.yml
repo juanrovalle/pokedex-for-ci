@@ -11,6 +11,15 @@ jobs:
         run: |
           echo "Hola Juan"
 
+
+      - name: Dime la fecha
+        run: date
+      - run: ls -l
+            
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Dime la fecha
         run: date
       - run: ls -l
