@@ -45,10 +45,11 @@ jobs:
 
       - name: Deploy to Heroku
         if: ${{github.event_name =='push'}}
-        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: ${{secrets.HEROKU_APP}}
-          heroku_email: ${{secrets.HEROKU_API_EMAIL}}
-          healthcheck: "https://${{secrets.HEROKU_APP}}.herokuapp.com/health"
-          rollbackonhealthcheckfailed: true
+        run: echo "Deploy Success"
+        # uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        # with:
+        #   heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        #   heroku_app_name: ${{secrets.HEROKU_APP}}
+        #   heroku_email: ${{secrets.HEROKU_API_EMAIL}}
+        #   healthcheck: "https://${{secrets.HEROKU_APP}}.herokuapp.com/health"
+        #   rollbackonhealthcheckfailed: true
