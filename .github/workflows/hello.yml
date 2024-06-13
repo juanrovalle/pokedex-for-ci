@@ -17,6 +17,10 @@ jobs:
       # - name: Dime la fecha
       #   run: date
       # - run: ls -l
+      - name: lint
+        uses: n1hility/cancel-previous-runs@v3
+        with:
+          token: ${{ github.token }}
 
       - uses: actions/checkout@v2
         with:
@@ -33,7 +37,7 @@ jobs:
 
       - name: build
         run: npm run build
-        
+
       - name: test
         run: npm test
       # - name: E2E Test
@@ -42,7 +46,6 @@ jobs:
       #     command: npm run test:e2e
       #     start: npm run start-test
       #     wait-on: http://localhost:5000
-
       - name: Deploy to Heroku
         if: ${{github.event_name =='push'}}
         run: echo "Deploy Success"
