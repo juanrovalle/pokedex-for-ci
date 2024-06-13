@@ -37,7 +37,10 @@ jobs:
           start: npm run start-test
           wait-on: http://localhost:5000
 
-      # - name: Dime la fecha
-      #   run: date
-      # - name: List Directory
-      #   run: ls -l
+      - uses: akhileshns/heroku-deploy@v3.13.15 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP}}
+          heroku_email: ${{secrets.HEROKU_API_EMAIL}}
+          healthcheck: "https://${{secrets.HEROKU_APP}}.herokuapp.com/health"
+          rollbackonhealthcheckfailed: true
