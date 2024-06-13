@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
 jobs:
   CI-CD:
     runs-on: ubuntu-20.04
@@ -24,23 +27,25 @@ jobs:
           node-version: "14"
       - name: Install dependencies
         run: npm ci
-      # - name: lint
-      #   run: npm run eslint
+      - name: lint
+        run: npm run eslint
       - name: build
         run: npm run build
       - name: test
         run: npm test
-      # - name: E2E Test
-      #   uses: cypress-io/github-action@v6
-      #   with:
-      #     command: npm run test:e2e
-      #     start: npm run start-test
-      #     wait-on: http://localhost:5000
+      - name: E2E Test
+        uses: cypress-io/github-action@v6
+        with:
+          command: npm run test:e2e
+          start: npm run start-test
+          wait-on: http://localhost:5000
 
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      - name: Deploy to Heroku
+        if: ${{github.event_name =='push'}}
+        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{secrets.HEROKU_APP}}
           heroku_email: ${{secrets.HEROKU_API_EMAIL}}
-         # healthcheck: "https://${{secrets.HEROKU_APP}}.herokuapp.com/health"
-         # rollbackonhealthcheckfailed: true
+          healthcheck: "https://${{secrets.HEROKU_APP}}.herokuapp.com/health"
+          rollbackonhealthcheckfailed: true
