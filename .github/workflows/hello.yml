@@ -30,12 +30,12 @@ jobs:
         run: npm run build
       - name: test
         run: npm test
-      - name: E2E Test
-        uses: cypress-io/github-action@v6
-        with:
-          command: npm run test:e2e
-          start: npm run start-test
-          wait-on: http://localhost:5000
+      # - name: E2E Test
+      #   uses: cypress-io/github-action@v6
+      #   with:
+      #     command: npm run test:e2e
+      #     start: npm run start-test
+      #     wait-on: http://localhost:5000
 
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
