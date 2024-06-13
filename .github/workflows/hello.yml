@@ -14,9 +14,9 @@ jobs:
       # #   run: |
       # #     echo "Hola Juan"
 
-      - name: Dime la fecha
-        run: date
-      - run: ls -l
+      # - name: Dime la fecha
+      #   run: date
+      # - run: ls -l
       - name: lint
         uses: n1hility/cancel-previous-runs@v3
         with:
